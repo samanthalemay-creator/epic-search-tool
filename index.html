@@ -368,7 +368,7 @@
                 class="file-input"
             />
             <p class="upload-description">
-                Upload your file with dot phrases. Supported formats: CSV, Excel (.xlsx, .xls). Expected columns: Dot Phrase, Category, SOAP Location, Brief Description, Full Description, Modal Command
+                Upload your dot phrase file. Supported formats: CSV, Excel (.xlsx, .xls). Required columns: Meditech Trigger and Current Text. The app also accepts Dot Phrase and Full Description. Category, SOAP Location, Brief Description, and Modal Command are optional.
             </p>
             <div id="loading" class="loading">Processing file...</div>
         </div>
@@ -948,11 +948,21 @@
                     const key = keys[i];
                     const lowerKey = key.toLowerCase().trim();
                     
-                    if (lowerKey === 'dot phrase' || lowerKey === 'dotphrase') {
+                    if (
+                        lowerKey === 'dot phrase' ||
+                        lowerKey === 'dotphrase' ||
+                        lowerKey === 'meditech trigger' ||
+                        lowerKey === 'meditechtrigger'
+                    ) {
                         dotPhrase = toString(row[key]);
                     } else if (lowerKey === 'brief description' || lowerKey === 'briefdescription') {
                         description = toString(row[key]);
-                    } else if (lowerKey === 'full description' || lowerKey === 'fulldescription') {
+                    } else if (
+                        lowerKey === 'full description' ||
+                        lowerKey === 'fulldescription' ||
+                        lowerKey === 'current text' ||
+                        lowerKey === 'currenttext'
+                    ) {
                         content = toString(row[key]);
                     } else if (lowerKey === 'category') {
                         category = toString(row[key]);
@@ -1219,7 +1229,7 @@
         function highlightSearchTerms(text, query) {
             if (!query || !text) return text;
             
-            const regex = new RegExp('(' + query.replace(/[.*+?^${}()|[\]\\]/g, '\\        function processUploadedData(') + ')', 'gi');
+            const regex = new RegExp('(' + query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
             return text.replace(regex, '<mark style="background-color: #fef08a; padding: 1px 2px; border-radius: 2px;">$1</mark>');
         }
     </script>
