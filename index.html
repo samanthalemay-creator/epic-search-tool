@@ -418,9 +418,6 @@
             sortBy = e.target.value;
             renderResults();
         });
-        });
-        });
-
         function loadFromStorage() {
             try {
                 const stored = localStorage.getItem(STORAGE_KEY);
@@ -464,7 +461,6 @@
             
             if (showFavoritesOnly) {
                 filtered = filtered.filter(p => p.isFavorite);
-            });
             }
             
             if (searchQuery) {
@@ -594,9 +590,7 @@
                     e.stopPropagation();
                     copyToClipboard(phrase.dotPhrase);
                 });
-                actions.appendChild(copyDotBtn););
-                    actions.appendChild(copyModalBtn);
-                }
+                actions.appendChild(copyDotBtn);
                 
                 phraseCard.appendChild(actions);
                 resultsGrid.appendChild(phraseCard);
@@ -858,10 +852,6 @@
             renderResults();
             showStatus('Successfully loaded ' + mappedData.length + ' dot phrases!', 'success');
         }
-            });
-            
-            renderResults();
-        }
 
         function exportToCSV() {
             if (dotPhrases.length === 0) {
@@ -1004,13 +994,6 @@
                 renderResults();
                 showStatus('Deleted ' + count + ' phrases', 'success');
             }
-        });
-            }
-            
-            alert(msg);
-            console.log('All phrases:', dotPhrases);
-            console.log('With modal:', withModal);
-            console.log('Without modal:', withoutModal);
         }
 
         function highlightSearchTerms(text, query) {
